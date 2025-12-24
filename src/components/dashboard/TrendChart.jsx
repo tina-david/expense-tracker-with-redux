@@ -1,9 +1,9 @@
 import React from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
-import { UseGlobalState } from '../../hooks/UseGlobalState';
+import { useSelector } from 'react-redux';
 
 function TrendChart() {
-  const { transactions } = UseGlobalState();
+  const { transactions } = useSelector((state)=>state.expense);
 
   const groupedData = transactions.reduce((acc, curr) => {
     const date = curr.date;

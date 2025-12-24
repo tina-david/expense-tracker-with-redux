@@ -1,8 +1,9 @@
 import React from 'react';
-import { UseGlobalState } from '../../hooks/UseGlobalState';
+// import { UseGlobalState } from '../../hooks/UseGlobalState';
+import { useSelector } from 'react-redux';
 
 function IncomeExpenses() {
-  const { transactions } = UseGlobalState();
+  const { transactions } = useSelector((state)=>state.expense);
 
   const amounts = transactions.map(transaction => transaction.amount);
 console.log(amounts);

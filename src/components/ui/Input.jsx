@@ -22,7 +22,7 @@ function Input({
         onChange={onChange}
         placeholder={placeholder}
         type={type}
-        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:border-blue-500"
+        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:border-blue-500 "
       />
     </div>
   );

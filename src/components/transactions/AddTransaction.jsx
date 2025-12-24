@@ -1,23 +1,27 @@
 import React, { useState } from "react";
-import { UseGlobalState } from "../../hooks/UseGlobalState";
+// import { UseGlobalState } from "../../hooks/UseGlobalState";
 import Input from "../ui/input";
 import Button from "../ui/button";
+import { useDispatch,useSelector } from "react-redux";
+import { addCategory,addTransaction } from "../../redux/slices/ExpenseSlices";
 function AddTransaction() {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("غذا");
   const [type, setType] = useState("expense");
-  const { addTransaction, addCategory, categories } = UseGlobalState();
-
+  // const { addTransaction, addCategory, categories } = UseGlobalState();
+   const categories=useSelector((state)=>state.expense.categories)
+   const dispatch=useDispatch();
   const [addingCategory, setAddingCategory] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState("");
+  
   const generateId = () => {
     return Math.floor(Math.random() * 1000000) + Date.now();
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !amount) {
-      alert("fill completely!");
+      alert("تمام موارد را کامل پر کنید!");
       return;
     }
     const signedAmount =
@@ -31,7 +35,7 @@ function AddTransaction() {
       type,
     };
 
-    addTransaction(newTransaction);
+    dispatch(addTransaction(newTransaction));
 
     setTitle("");
     setAmount("");
@@ -39,15 +43,15 @@ function AddTransaction() {
   };
   const handleSaveCategory = () => {
     if (newCategoryName.trim()) {
-      addCategory(newCategoryName.trim());
+      dispatch(addCategory(newCategoryName.trim()));
       setCategory(newCategoryName.trim()); 
       setNewCategoryName("");
       setAddingCategory(false); 
     }
   };
   return (
-    <div className="dire">
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="flex-1 ">
+      <form onSubmit={handleSubmit} className="space-y-4 ">
         <div className="grid grid-cols-2 gap-6 mb-6">
           <Button
             type="button"

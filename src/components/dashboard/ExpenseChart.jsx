@@ -1,9 +1,10 @@
 import React from "react";
 import { PieChart } from "@mui/x-charts/PieChart"; 
-import { UseGlobalState } from "../../hooks/UseGlobalState";
+// import { UseGlobalState } from "../../hooks/UseGlobalState";
+import { useSelector } from 'react-redux';
 
 function ExpenseChart() {
-  const { transactions } = UseGlobalState();
+  const { transactions } = useSelector((state)=>state.expense);
 
   const expenseTransactions = transactions.filter((t) => t.type === "expense");
 

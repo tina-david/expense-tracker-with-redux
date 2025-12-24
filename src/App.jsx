@@ -1,12 +1,13 @@
-import { ExpenseProvider } from "./context/ExpenseContext"
+// import { ExpenseProvider } from "./context/ExpenseContext"
 import AppRouter from "./routes"
-
+import {Provider} from "react-redux"
+import { store } from "./redux/slices/store/store"
 
 function App() {
   return (
- <ExpenseProvider>
-      <AppRouter />
-    </ExpenseProvider>      
+<Provider store={store} >
+    <AppRouter />
+    </Provider>
   )
 }
 
